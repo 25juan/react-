@@ -1,3 +1,5 @@
+import './style.css'
+
 var channel = new MessageChannel();
 channel.port1.onmessage = function (ev) {
   console.log("port1...", ev.data)
