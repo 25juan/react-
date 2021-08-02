@@ -1,8 +1,8 @@
 ## react 16新架构 (三大金刚、互相合作)
 
--. Scheduler(调度器)----顾名思义，调度任务的优先级，高任务优先进入Reconciler
--. Reconciler(协调器)----负责找出组件的变化, diff算法
--. Renderer(渲染器) --- 负责将变化的组件渲染到界面
+- Scheduler(调度器)----顾名思义，调度任务的优先级，高任务优先进入Reconciler
+- Reconciler(协调器)----负责找出组件的变化, diff算法
+- Renderer(渲染器) --- 负责将变化的组件渲染到界面
 
 ###  Scheduler(调度器)
 当浏览器有无剩余工作时间作为任务的中断标准，需要一种机制来通知我们浏览器是否有剩余的工作时间。
@@ -33,7 +33,7 @@ export const Deletion =0b0000000001000;
 整个Scheduler与Reconciler的工作都在内存中进行。只有当所有组件都完成Reconciler的工作，才会统一交给Renderer。
 
 ### Renderer(渲染器) 
--. 能够根据 Reconciler为虚拟dom打上的标记，同步执行对应的dom操作
+- 能够根据 Reconciler为虚拟dom打上的标记，同步执行对应的dom操作
 ### React Fiber可以理解为
 React内部实现的一套状态更新机制。支持任务不同优先级，可中断与恢复，并且恢复后可以复用之前的中间状态。
 
