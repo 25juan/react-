@@ -31,9 +31,10 @@ import './style.css'
 //   },
 //   [Symbol.toPrimitive]() {
 //     return 3
-//   }
+//   },
 // };
-// console.log(1 + a)
+// console.log(1 + a, a)
+// console.log('1' + a)
 
 // function runBreakPoint(breakIndex:number) {
 //   const list = [1,3,54,34,6543,656,6436];
@@ -47,3 +48,30 @@ import './style.css'
 //   console.log(e)
 // });
 // runBreakPoint(3)
+
+// 重写instanceof默认行为
+// class Person{
+//   static [Symbol.hasInstance](){
+//     console.log('instance...')
+//   }
+// }
+// const person = new Person();
+// console.log(person instanceof Person)
+
+// function Parent(name: string) {
+//   this.name = name;
+// }
+// Parent.prototype.getValue = function () {
+//   return  this.name;
+// }
+// function Child(name: string) {
+//   Parent.call(this, name)
+// }
+// Child.prototype = new Parent();
+// console.log(new Child('Jack'));
+
+import update,{ a } from './a';
+console.log(a)
+update().then(result => {
+  console.log(result, a)
+})
