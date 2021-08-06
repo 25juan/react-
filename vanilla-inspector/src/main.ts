@@ -70,8 +70,18 @@ import './style.css'
 // Child.prototype = new Parent();
 // console.log(new Child('Jack'));
 
-import update,{ a } from './a';
-console.log(a)
-update().then(result => {
-  console.log(result, a)
-})
+// import update,{ a } from './a';
+// console.log(a)
+// update().then(result => {
+//   console.log(result, a)
+// })
+
+async function plus() {
+  const sum = 1 + (await 10);
+  return sum;
+}
+(async () => {
+  console.log('before....');
+  const sum = await plus();
+  console.log(sum);
+})();
