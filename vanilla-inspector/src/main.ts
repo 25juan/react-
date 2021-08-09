@@ -85,11 +85,16 @@ import './style.css'
   const sum = await plus();
   console.log(sum);
 })();*/
-window.addEventListener("click", event => {
-  console.log('捕获....自顶向下', event)
-}, true);
-window.addEventListener("click", event => {
-  console.log('冒泡....自顶向上', event.target)
-});
+// window.addEventListener("click", event => {
+//   console.log('捕获....自顶向下', event)
+// }, true);
+// window.addEventListener("click", event => {
+//   console.log('冒泡....自顶向上', event.target)
+// });
+//  浏览器缓存 一级级取，取不到的话走下一级
+// memory cache ----> disk cache ----> push cache(http2) -----> 网络请求
+// 缓存策略  强缓存和协商缓存
+//
+import './design-pattern/single-case';
 
 
