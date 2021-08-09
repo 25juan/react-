@@ -76,7 +76,7 @@ import './style.css'
 //   console.log(result, a)
 // })
 
-async function plus() {
+/*async function plus() {
   const sum = 1 + (await 10);
   return sum;
 }
@@ -84,4 +84,12 @@ async function plus() {
   console.log('before....');
   const sum = await plus();
   console.log(sum);
-})();
+})();*/
+window.addEventListener("click", event => {
+  console.log('捕获....自顶向下', event)
+}, true);
+window.addEventListener("click", event => {
+  console.log('冒泡....自顶向上', event.target)
+});
+
+
