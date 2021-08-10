@@ -1,0 +1,35 @@
+
+{
+  "private": true,
+  "name": "react-illustration-series",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "dumi dev",
+    "start2": "node /Users/tangl/projects/km7/pr/dumi/packages/dumi/bin/dumi.js dev",
+    "build": "dumi build",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "devDependencies": {
+    "dumi": "^1.0.7",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "yorkie": "^2.0.0"
+  },
+  "repository": "git@github.com:7kms/react-illustration-series.git",
+  "author": "km7 <tlyspa@gmail.com>",
+  "license": "MIT"
+}
