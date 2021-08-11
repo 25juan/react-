@@ -7,10 +7,5 @@ const elements = (
     <App />
   </React.StrictMode>
 );
-ReactDOM.render(
-  elements,
-  document.getElementById('root'),
-  () => {
-    console.log('inited...')
-  }
-)
+console.log(<div>11</div>, elements)
+ReactDOM.render(elements,document.getElementById('root'))
