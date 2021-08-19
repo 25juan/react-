@@ -1,45 +1,220 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import ReactDOM from "react-dom";
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+// 定义子组件
+
+class LifeCycle extends React.Component {
+
+  constructor(props) {
+
+    console.log("进入constructor");
+
+    super(props);
+
+    // state 可以在 constructor 里初始化
+
+    this.state = { text: "子组件的文本" };
+
+  }
+
+  // 初始化渲染时调用
+
+  // componentWillMount() {
+  //
+  //   console.log("componentWillMount方法执行");
+  //
+  // }
+
+  // 初始化渲染时调用
+
+  componentDidMount() {
+
+    console.log("componentDidMount方法执行");
+
+  }
+
+  // 父组件修改组件的props时会调用
+
+  // componentWillReceiveProps(nextProps) {
+  //
+  //   console.log("componentWillReceiveProps方法执行");
+  //
+  // }
+
+  // 组件更新时调用
+
+  shouldComponentUpdate(nextProps, nextState) {
+
+    if(this.props.text === nextProps.text && this.state.text === nextState.text) {
+      return false ;
+    }
+    return true;
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      fatherText: props.text
+    }
+  }
+  getSnapshotBeforeUpdate() {
+    console.log('getSnapshotBeforeUpdate')
+    return {xxx: 'ssss'};
+  }
+
+  // 组件更新时调用
+
+  // componentWillUpdate(nextProps, nextState) {
+  //
+  //   console.log("componentWillUpdate方法执行");
+  //
+  // }
+
+  // 组件更新后调用
+
+  componentDidUpdate(preProps, preState, thirdValue) {
+
+    console.log("componentDidUpdate方法执行", thirdValue);
+
+  }
+
+  // 组件卸载时调用
+
+  componentWillUnmount() {
+
+    console.log("子组件的componentWillUnmount方法执行");
+
+  }
+
+  // 点击按钮，修改子组件文本内容的方法
+
+  changeText = () => {
+
+    this.setState({
+
+      text: "修改后的子组件文本"
+
+    });
+
+  };
+
+  render() {
+
+    console.log("render方法执行");
+
+    return (
+
+      <div className="container">
+
+        <button onClick={this.changeText} className="changeText">
+
+          修改子组件文本内容
+
+        </button>
+        <p>fatherText----->{this.state.fatherText}</p>
+        <p className="textContent">{this.state.text}</p>
+
+        <p className="fatherContent">{this.props.text}</p>
+
+      </div>
+
+    );
+
+  }
+
 }
 
-export default App
+// 定义 LifeCycle 组件的父组件
+
+class LifeCycleContainer extends React.Component {
+
+
+
+  // state 也可以像这样用属性声明的形式初始化
+
+  state = {
+
+    text: "父组件的文本",
+
+    hideChild: false
+
+  };
+
+  // 点击按钮，修改父组件文本的方法
+
+  changeText = () => {
+
+    this.setState({
+
+      text: "修改后的父组件文本"
+
+    });
+
+  };
+
+  // 点击按钮，隐藏（卸载）LifeCycle 组件的方法
+
+  hideChild = () => {
+
+    this.setState({
+
+      hideChild: true
+
+    });
+
+  };
+
+  render() {
+
+    return (
+
+      <div className="fatherContainer">
+
+        <button onClick={this.changeText} className="changeText">
+
+          修改父组件文本内容
+
+        </button>
+
+        <button onClick={this.hideChild} className="hideChild">
+
+          隐藏子组件
+
+        </button>
+
+        {this.state.hideChild ? null : <LifeCycle text={this.state.text} />}
+
+      </div>
+
+    );
+  }
+}
+
+
+class EventBus {
+  constructor() {
+    this.eventMap = {};
+  }
+  on(type, handler) {
+    if(this.eventMap[type]) {
+      this.eventMap[type].push(handler)
+    }else {
+      this.eventMap[type] = [handler];
+    }
+  }
+  off(type) {
+    delete this.eventMap[type];
+  }
+  emit(type, params) {
+    const callbacks = this.eventMap[type];
+    callbacks.map((func) => {
+      func(params);
+    })
+  }
+}
+const eventBus = new EventBus();
+eventBus.on('aa', params => console.log(params));
+eventBus.emit('aa', 'hello world')
+
+
+export default LifeCycleContainer;
