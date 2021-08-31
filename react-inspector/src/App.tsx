@@ -13,7 +13,7 @@ function ChildB({ text, onClick }) {
   return textSpan;
 }
 
-function App() {
+function App2() {
   const [textA, setTextA] = React.useState('childA.....');
   const [textB, setTextB] = React.useState('childB.....');
 
@@ -29,6 +29,12 @@ function App() {
         setTextB("hello B");
       },0)
     }}>点我</button>
+  </div>)
+}
+
+function App() {
+  return  (<div>
+    <span>hello world</span>
   </div>)
 }
 

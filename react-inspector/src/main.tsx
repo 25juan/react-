@@ -10,4 +10,5 @@ import App from './App'
 //   return <div>{text}</div>
 // }
 const element = <App />;
+debugger
 ReactDOM.render(element,document.getElementById('root'))
