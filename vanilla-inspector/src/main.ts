@@ -94,7 +94,8 @@ import './style.css'
 //  浏览器缓存 一级级取，取不到的话走下一级
 // memory cache ----> disk cache ----> push cache(http2) -----> 网络请求
 // 缓存策略  强缓存和协商缓存
-//
+// [] == ![] 你是否能正确写出答案呢？ ==判断的时候会做隐式转换 ![] 会把这个转换成为number类型即为0；[]也会转换成为number类型为0；所以返回true
+
 import './design-pattern/single-case';
 
 
