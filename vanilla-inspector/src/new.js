@@ -9,3 +9,7 @@ function Person(name,age) {
   this.age = age;
 }
 create(Person, 'kongdong', 16);
+
+
+
+var func = new Function("console.log(this)");

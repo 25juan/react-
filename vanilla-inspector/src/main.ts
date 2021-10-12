@@ -96,6 +96,13 @@ import './style.css'
 // 缓存策略  强缓存和协商缓存
 // [] == ![] 你是否能正确写出答案呢？ ==判断的时候会做隐式转换 ![] 会把这个转换成为number类型即为0；[]也会转换成为number类型为0；所以返回true
 
-import './design-pattern/single-case';
+// import './design-pattern/single-case';
+import Linked from './constructor/link';
+let linked = new Linked();
+
+linked.append(2);
+linked.append(4);
+linked.append(5);
+console.log(linked);
 
 
