@@ -97,12 +97,45 @@ import './style.css'
 // [] == ![] 你是否能正确写出答案呢？ ==判断的时候会做隐式转换 ![] 会把这个转换成为number类型即为0；[]也会转换成为number类型为0；所以返回true
 
 // import './design-pattern/single-case';
-import Linked from './constructor/link';
-let linked = new Linked();
+// import Linked from './constructor/link';
+// let linked = new Linked();
+//
+// linked.append(2);
+// linked.append(4);
+// linked.append(5);
+// console.log(linked);
+// import "./Linked";
+//
+// const obj = Object.create(null);
+// obj.name = "JavaScript";
+//
+// console.log(obj);
+// Object.freeze(obj);
+// console.log(obj);
+//
+//
+// function Person() {
+//   this.age = 15;
+// }
+// const P = Object.create(Person)
+// console.log(P);
 
-linked.append(2);
-linked.append(4);
-linked.append(5);
-console.log(linked);
+let obj = {};
+let song = "发如雪";
+obj.singer = "周杰伦";
+
+Object.defineProperty(obj, "music", {
+  configurable: true,
+  enumerable: false,
+  get(){
+    return song;
+  },
+  set(val) {
+    song = val;
+  }
+});
+for(let key in obj) {
+  console.log(key);
+}
 
 
